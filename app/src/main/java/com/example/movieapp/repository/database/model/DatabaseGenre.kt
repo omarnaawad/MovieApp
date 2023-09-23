@@ -6,11 +6,7 @@ import com.google.gson.annotations.SerializedName
 
 @Entity
 class DatabaseGenre(
-    val adult: Boolean,
-    val biography: String,
-    val gender: Int,
     @PrimaryKey
     val genreId: Long,
     val name: String,
-    val popularity: Double,
 )

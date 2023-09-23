@@ -13,7 +13,7 @@ import com.example.movieapp.repository.database.model.MovieWithGenres
 @Dao
 interface MoviesDao {
     @Transaction
-    @Query("select * from databasemovie order by movieId")
+    @Query("select * from databasemovie")
     fun getMovies(): LiveData<List<MovieWithGenres>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -58,7 +58,7 @@ fun getMoviesDatabase(context: Context): MoviesDatabase {
         if (!::INSTANCE.isInitialized) {
             INSTANCE = Room.databaseBuilder(context.applicationContext,
                 MoviesDatabase::class.java,
-                "moviesDB").build()
+                "movies_DB").build()
         }
     }
     return INSTANCE

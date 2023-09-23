@@ -1,7 +1,7 @@
 package com.example.movieapp.repository.network
 
 import com.example.app.BuildConfig
-import com.example.movieapp.repository.network.model.NetworkGenre
+import com.example.movieapp.repository.network.model.NetworkGenreList
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
@@ -14,13 +14,13 @@ import retrofit2.http.Query
 interface MoviesService {
     @GET("3/movie/popular")
     fun getLatestMovies(@Query("api_key") apiKey: String = BuildConfig.MOVIES_API_KEY, @Query("page") page: Int, @Query("language") language: String = "en-US"): Deferred<Response<NetworkLatestMovies>>
-    @GET("3/person/{genre_id}")
-    fun getGenreDetails(@Path(value = "genre_id", encoded = true) genreId: Int, @Query("api_key") apiKey: String = BuildConfig.MOVIES_API_KEY, @Query("language") language: String = "en-US"): Deferred<Response<NetworkGenre>>
+    @GET("3/genre/movie/list")
+    fun getGenreDetails(@Query("api_key") apiKey: String = BuildConfig.MOVIES_API_KEY, @Query("language") language: String = "en-US"): Deferred<Response<NetworkGenreList>>
 }
 const val BASE_URL = "https://api.themoviedb.org/"
 const val IMAGE_BASE_URL = "https://image.tmdb.org/"
 const val PIC_POSTER_PATH = "t/p/original"
-const val PIC_LIST_PATH = "t/p/w100"
+const val PIC_LIST_PATH = "t/p/w500"
 object Network {
     // Configure retrofit to parse JSON and use coroutines
     private val retrofit = Retrofit.Builder()
