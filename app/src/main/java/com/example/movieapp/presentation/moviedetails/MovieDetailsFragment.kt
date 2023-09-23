@@ -25,6 +25,18 @@ class MovieDetailsFragment : Fragment() {
         val movie = MovieDetailsFragmentArgs.fromBundle(requireArguments()).selectedMovie
 
         binding.movie = movie
+        var genres = ""
+        movie.genresList.forEachIndexed { index, s ->
+            run {
+                if (index != movie.genresList.lastIndex) {
+                    genres += s + ", "
+                } else {
+                    genres += s
+                }
+            }
+        }
+
+        binding.genres = genres
 
         return binding.root
     }

@@ -18,7 +18,8 @@
 package com.example.movieapp.repository.network
 
 import com.example.movieapp.presentation.model.Movie
-import com.example.movieapp.repository.database.DatabaseMovie
+import com.example.movieapp.repository.database.model.DatabaseGenre
+import com.example.movieapp.repository.database.model.DatabaseMovie
 import com.google.gson.annotations.SerializedName
 
 data class NetworkLatestMovies(val results: List<NetworkMovie>)
@@ -36,7 +37,9 @@ data class NetworkMovie(
     @SerializedName("vote_average")
     val rate: Double,
     @SerializedName("release_date")
-    val releaseDate: String
+    val releaseDate: String,
+    @SerializedName("genre_ids")
+    val genreIds: List<Int>
 )
 
 fun NetworkLatestMovies.asDomainModel(): List<Movie> {
@@ -51,7 +54,9 @@ fun NetworkLatestMovies.asDomainModel(): List<Movie> {
             listImagePath = it.listImagePath,
             releaseDate = it.releaseDate,
             isFavourite = false,
-            isEmpty = false
+            isEmpty = false,
+            genresList = emptyList<String>().toMutableList()
+
         )
     }
 }
@@ -59,7 +64,7 @@ fun NetworkLatestMovies.asDomainModel(): List<Movie> {
 fun NetworkLatestMovies.asDatabaseModel(): Array<DatabaseMovie> {
     return results.map {
         DatabaseMovie(
-            id = it.id,
+            movieId = it.id,
             title = it.title,
             originalTitle = it.originalTitle,
             posterSrc = IMAGE_BASE_URL + PIC_POSTER_PATH + it.posterSrc,
@@ -67,7 +72,8 @@ fun NetworkLatestMovies.asDatabaseModel(): Array<DatabaseMovie> {
             rate = it.rate,
             listImagePath = IMAGE_BASE_URL + PIC_LIST_PATH + it.listImagePath,
             releaseDate = it.releaseDate,
-            isFavourite = false
+            isFavourite = false,
+            genres = emptyList<DatabaseGenre>().toMutableList()
         )
     }.toTypedArray()
 }

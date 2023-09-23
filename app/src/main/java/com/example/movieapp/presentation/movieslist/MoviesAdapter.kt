@@ -2,6 +2,7 @@ package com.example.movieapp.presentation.movieslist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app.databinding.MovieListItemBinding
@@ -66,7 +67,7 @@ class MoviesAdapter(val listener: MoviesListener) :
             loadingItemAdded = false
             val position: Int = currentList.size - 1
             val result = currentList.get(position)
-            if (result != null) {
+            if (result != null && result.isEmpty) {
                 currentList.removeAt(position)
                 notifyItemRemoved(position)
             }

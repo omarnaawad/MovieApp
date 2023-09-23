@@ -3,7 +3,9 @@ package com.example.movieapp.presentation.movieslist
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import com.example.movieapp.presentation.model.Movie
 import com.example.movieapp.repository.MovieRepository
@@ -20,8 +22,15 @@ class MoviesListViewModel(application: Application)  : AndroidViewModel(applicat
 
     var isFav: MutableLiveData<Boolean> = MutableLiveData()
 
-    var movies = moviesRepository.movies
-    var favouriteMovies = moviesRepository.favouriteMovies
+    var movies = MediatorLiveData<List<Movie>>().apply {
+        addSource(moviesRepository.movies){
+            this.value = it.filter { movie: Movie ->
+                if(isFav.value!!){
+                    movie.isFavourite
+                } else true
+            }
+        }
+    }
 
     // The internal MutableLiveData that stores the status of the most recent request
     private val _listStatus = MutableLiveData<MoviesApiStatus>()
@@ -54,6 +63,7 @@ class MoviesListViewModel(application: Application)  : AndroidViewModel(applicat
                 _listStatus.value = MoviesApiStatus.DONE
             } catch (e: Exception){
                 _listStatus.value = MoviesApiStatus.ERROR
+                e.printStackTrace()
             }
         }
     }
@@ -66,5 +76,10 @@ class MoviesListViewModel(application: Application)  : AndroidViewModel(applicat
 
     fun filterFavourite(checked: Boolean) {
         isFav.value = checked
+        if(checked){
+            movies.postValue(moviesRepository.movies.value!!.filter { movie: Movie -> movie.isFavourite })
+        } else {
+            movies.postValue(moviesRepository.movies.value!!)
+        }
     }
 }

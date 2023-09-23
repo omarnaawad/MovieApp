@@ -7,6 +7,9 @@
         <variable
             name="movie"
             type="com.example.movieapp.presentation.model.Movie" />
+        <variable
+            name="genres"
+            type="String" />
     </data>
 
     <ScrollView
@@ -19,12 +22,13 @@
 
             <ImageView
                 android:id="@+id/iv_movie_poster_details"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="400dp"
+                android:layout_height="700dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_margin="8dp"
+                android:scaleType="centerInside"
                 imageUrl="@{movie.posterSrc}"/>
 
 
@@ -95,6 +99,32 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_overview_value" />
 
             <TextView
+                android:id="@+id/tv_genres"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:gravity="center_vertical|start"
+                android:text="@string/genres"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_genres_value"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_genres_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:text="@{genres}"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/tv_release_date_value" />
+
+            <TextView
                 android:id="@+id/tv_rate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -116,7 +146,7 @@
                 android:src="@drawable/baseline_star_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/tv_release_date_value"/>
+                app:layout_constraintTop_toBottomOf="@+id/tv_genres_value"/>
 
             <TextView
                 android:id="@+id/tv_rate_value"
@@ -127,7 +157,7 @@
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/iv_star"
-                app:layout_constraintTop_toBottomOf="@id/tv_release_date_value"
+                app:layout_constraintTop_toBottomOf="@id/tv_genres_value"
                 app:rate="@{movie.rate}" />
 
             <androidx.constraintlayout.widget.Guideline

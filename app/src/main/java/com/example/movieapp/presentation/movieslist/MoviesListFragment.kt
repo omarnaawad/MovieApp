@@ -39,13 +39,10 @@ class MoviesListFragment : Fragment() {
         }
         ))
         binding.moviesRecycler.adapter = adapter
-        binding.moviesRecycler.addOnScrollListener(PaginationScrollListener(binding.moviesRecycler.layoutManager as LinearLayoutManager,
-            loadMoreItems = { viewModel.getNextPage() }, isLoading = { viewModel.isLoading }
-        ))
         viewModel.listStatus.observe(viewLifecycleOwner, Observer{
             it?.let {
                 when(it){
-                    MoviesApiStatus.DONE -> adapter.addLoadingFooter()
+                    MoviesApiStatus.DONE -> binding.moviesRecycler.post(Runnable { adapter.addLoadingFooter() })
                     else -> adapter.removeLoadingFooter()
                 }
             }
@@ -56,12 +53,15 @@ class MoviesListFragment : Fragment() {
                 binding.statusLoadingWheel.visibility = View.GONE
             }
         })
+        val paginationScrollListener = PaginationScrollListener(binding.moviesRecycler.layoutManager as LinearLayoutManager,
+            loadMoreItems = { viewModel.getNextPage() }, isLoading = { viewModel.isLoading }
+        )
         viewModel.isFav.observe(viewLifecycleOwner, Observer{
             it?.let {
-                if(it) {
-                    viewModel.favouriteMovies.value?.let { it1 -> adapter.setData(it1) }
+                if (it){
+                    binding.moviesRecycler.removeOnScrollListener(paginationScrollListener)
                 } else {
-                    viewModel.movies.value?.let { it1 -> adapter.setData(it1) }
+                    binding.moviesRecycler.addOnScrollListener(paginationScrollListener)
                 }
             }
         })

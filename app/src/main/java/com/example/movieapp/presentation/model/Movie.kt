@@ -13,4 +13,6 @@ data class Movie(val id: Long = 0,
                  val rate: Double = 0.0,
                  val releaseDate: String = "",
                  var isFavourite: Boolean = false,
-                 var isEmpty: Boolean = true): Parcelable
+                 var isEmpty: Boolean = true,
+                 val genresList: List<String> = emptyList<String>().toMutableList()
+): Parcelable
