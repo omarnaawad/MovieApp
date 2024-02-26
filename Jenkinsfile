@@ -35,16 +35,16 @@ pipeline {
             steps {
                 //sh './gradlew assembleRelease'
                 sh 'chmod +x gradlew'
-                sh './gradlew build --scan'
+                sh './gradlew build'
             }
         }
-        stage('SonarQube analysis') {
+        /*stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv('mysonar') {
                     sh "./gradlew sonar"
                 }
             }
-        }
+        }*/
         stage('Deploy to Nexus') {
             steps {
                 script {
