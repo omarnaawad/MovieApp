@@ -21,7 +21,7 @@ pipeline {
         }*/
         stage('SCM') {
             steps {
-                checkout()
+                checkout scm
             }
         }                  
         /*stage('Test') {
