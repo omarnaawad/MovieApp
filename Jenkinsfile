@@ -35,7 +35,8 @@ pipeline {
             steps {
                 //sh './gradlew assembleRelease'
                 sh 'chmod +x gradlew'
-                sh './gradlew build'
+                sh './gradlew assemble'
+                //sh './gradlew build'
             }
         }
         /*stage('SonarQube analysis') {
