@@ -34,6 +34,7 @@ pipeline {
         stage('Build') {
             steps {
                 //sh './gradlew assembleRelease'
+                sh 'chmod +x gradlew'
                 sh './gradlew build --scan'
             }
         }
