@@ -57,7 +57,7 @@ pipeline {
                         repository: 'myrepo',
                         credentialsId: "${NEXUS_CREDENTIAL_ID}",
                         artifacts: [
-                            [artifactId: 'new', classifier: '', file: './app/build/outputs/apk/release/*.apk ', type: 'apk']
+                            [artifactId: 'new', classifier: '', file: './app/build/outputs/apk/release/* ', type: 'apk']
                         ]
                     )
                 }
