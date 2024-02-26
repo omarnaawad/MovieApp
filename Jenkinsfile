@@ -64,10 +64,4 @@ pipeline {
             }
         }
     }
-    post {
-         always {
-            echo "Cleaning . . . "
-            cleanWs()
-        }
-    }
 }
