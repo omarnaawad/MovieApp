@@ -52,7 +52,7 @@ pipeline {
                         nexusVersion: 'nexus3',
                         protocol: 'http',
                         nexusUrl: "10.16.33.232:8081",
-                        groupId: 'ok',
+                        groupId: 'test',
                         version: '5',
                         repository: 'myrepo',
                         credentialsId: "${NEXUS_CREDENTIAL_ID}",
