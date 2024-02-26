@@ -53,11 +53,11 @@ pipeline {
                         protocol: 'http',
                         nexusUrl: "10.16.33.232:8081",
                         groupId: 'ok',
-                        version: '4',
+                        version: '5',
                         repository: 'myrepo',
                         credentialsId: "${NEXUS_CREDENTIAL_ID}",
                         artifacts: [
-                            [artifactId: 'ok', classifier: '', file: './app/build/outputs/apk/release/*.apk ', type: 'apk']
+                            [artifactId: 'new', classifier: '', file: './app/build/outputs/apk/release/*.apk ', type: 'apk']
                         ]
                     )
                 }
