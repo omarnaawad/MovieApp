@@ -21,7 +21,7 @@ pipeline {
         }*/
         stage('SCM') {
             steps {
-                sh 'git clone https://github.com/omarnaawad/MovieApp.git'
+                checkout()
             }
         }                  
         /*stage('Test') {
