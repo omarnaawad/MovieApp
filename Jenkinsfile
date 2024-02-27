@@ -33,6 +33,7 @@ pipeline {
         }*/
         stage('Build') {
             steps {
+                sh 'jdk --version'
                 sh 'chmod +x gradlew'
                 sh './gradlew assembleRelease'
                 //sh './gradlew build'
