@@ -5,7 +5,7 @@ pipeline {
     }
     agent {
         docker {
-            image 'cimg/android:2024.01' //cimg/android:2024.01
+            image 'mreichelt/android' //cimg/android:2024.01
         }
     }
     environment {
