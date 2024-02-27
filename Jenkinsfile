@@ -5,7 +5,7 @@ pipeline {
     }
     agent {
         docker {
-            image 'mreichelt/android' //cimg/android:2024.01
+            image 'ccitest/android:2024.01.1' //cimg/android:2024.01
         }
     }
     environment {
@@ -58,7 +58,7 @@ pipeline {
                         protocol: 'http',
                         nexusUrl: "10.16.33.232:8081",
                         groupId: 'test',
-                        version: '88',
+                        version: '9',
                         repository: 'myrepo',
                         credentialsId: "${NEXUS_CREDENTIAL_ID}",
                         artifacts: [
