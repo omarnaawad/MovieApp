@@ -23,22 +23,26 @@ pipeline {
             steps {
                 checkout scm
             }
-        }                  
-        /*stage('Test') {
+        } 
+        stage('setup') {
             steps {
                 sh 'chmod +x gradlew'
+            }   
+        }
+        
+        stage('Build') {
+            steps {
+                sh 'java -version'
+                sh './gradlew assemble'
+                //sh './gradlew build'
+            }
+        }
+        /*stage('Test') {
+            steps {
                 sh './gradlew test'
             }
             
         }*/
-        stage('Build') {
-            steps {
-                sh 'jdk --version'
-                sh 'chmod +x gradlew'
-                sh './gradlew assembleRelease'
-                //sh './gradlew build'
-            }
-        }
         /*stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv('mysonar') {
@@ -54,7 +58,7 @@ pipeline {
                         protocol: 'http',
                         nexusUrl: "10.16.33.232:8081",
                         groupId: 'test',
-                        version: '6',
+                        version: '88',
                         repository: 'myrepo',
                         credentialsId: "${NEXUS_CREDENTIAL_ID}",
                         artifacts: [
