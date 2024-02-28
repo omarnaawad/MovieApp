@@ -14,11 +14,6 @@ pipeline {
     }
     
     stages {
-        stage('Clean WS') {
-            steps {
-                cleanWs()
-            }
-        }
         stage('SCM') {
             steps {
                 checkout scm
@@ -67,6 +62,11 @@ pipeline {
                     )
                 }
             }
+        }
+    }
+    post { 
+        always { 
+            cleanWs()
         }
     }
 }
