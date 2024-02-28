@@ -37,19 +37,19 @@ pipeline {
                 //sh './gradlew build'
             }
         }
-        /*stage('Test') {
+        stage('Test') {
             steps {
                 sh './gradlew test'
             }
             
-        }*/
-        /*stage('SonarQube analysis') {
+        }
+        stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv('mysonar') {
                     sh "./gradlew sonar"
                 }
             }
-        }*/
+        }
         stage('Deploy to Nexus') {
             steps {
                 script {
@@ -62,7 +62,7 @@ pipeline {
                         repository: 'myrepo',
                         credentialsId: "${NEXUS_CREDENTIAL_ID}",
                         artifacts: [
-                            [artifactId: 'new', classifier: '', file: './app/build/outputs/apk/release/app-release-unsigned.apk', type: 'apk']
+                            [artifactId: 'movies', classifier: '', file: './app/build/outputs/apk/debug/app-debug.apk', type: 'apk']
                         ]
                     )
                 }
