@@ -14,6 +14,11 @@ pipeline {
     }
     
     stages {
+        stage('Clean') {
+            steps {
+                deleteDir()
+            }
+        }
         stage('SCM') {
             steps {
                 checkout scm
