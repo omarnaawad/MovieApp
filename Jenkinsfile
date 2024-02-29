@@ -68,6 +68,16 @@ pipeline {
                 }
             }
         }
+        stage ('SLackSend') {
+            steps {
+                slackUploadFile filePath: "*./app/build/outputs/apk/release/app-release-unsigned.apk", initialComment:  "HEY That is APK"
+            }
+        }
+    }
+    post{
+        success{
+            slackSend color: "good", message: "Success"
+        }
     }
     /*post { 
         always { 
