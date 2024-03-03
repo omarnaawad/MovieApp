@@ -1,7 +1,7 @@
 pipeline {
     options {
         // This is required if you want to clean before build
-        skipDefaultCheckout(true)
+        //skipDefaultCheckout(true)
     }
     agent {
         docker {
@@ -18,12 +18,12 @@ pipeline {
             steps {
                 deleteDir()
             }
-        }*/
+        }
         stage('SCM') {
             steps {
                 checkout scm
             }
-        } 
+        }*/ 
         stage('setup') {
             steps {
                 sh 'chmod +x gradlew'
