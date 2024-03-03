@@ -33,8 +33,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'java -version'
-                sh './gradlew assemble'
-                //sh './gradlew build'
+                //sh './gradlew assemble'
+                sh './gradlew build'
             }
         }
         stage('Test') {
