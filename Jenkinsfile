@@ -5,7 +5,7 @@ pipeline {
     }
     agent {
         docker {
-            image 'mingc/android-build-box:latest' //cimg/android:2024.01 ccitest/android:2024.01.1
+            image 'mingc/android-build-box:1.27.0' //cimg/android:2024.01 ccitest/android:2024.01.1
         }
     }
     environment {
