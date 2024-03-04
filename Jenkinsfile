@@ -13,7 +13,6 @@ pipeline {
         NEXUS_URL = '10.16.33.232:8081'
         NEXUS_CREDENTIAL_ID = '3' 
     }
-    
     stages {
         /*stage('Clean') {
             steps {
@@ -75,15 +74,10 @@ pipeline {
             }
         }
     }
-    post{
+    /*post {
         success{
             slackSend color: "good", message: "Success"
         }
-        always { 
-            cleanWs()
-        }
-    }
-    /*post { 
         always { 
             cleanWs()
         }
