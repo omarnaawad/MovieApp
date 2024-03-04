@@ -1,11 +1,11 @@
 pipeline {
-    /*options {
+    options {
         // This is required if you want to clean before build
         //skipDefaultCheckout(true)
-    }*/
+    }
     agent {
         docker {
-            image 'ccitest/android:2024.01.1' //cimg/android:2024.01
+            image 'cimg/android:2024.01' //cimg/android:2024.01 ccitest/android:2024.01.1
         }
     }
     environment {
@@ -18,12 +18,12 @@ pipeline {
             steps {
                 deleteDir()
             }
-        }
+        }*/
         stage('SCM') {
             steps {
                 checkout scm
             }
-        }*/ 
+        }
         stage('setup') {
             steps {
                 sh 'chmod +x gradlew'
@@ -77,6 +77,9 @@ pipeline {
     post{
         success{
             slackSend color: "good", message: "Success"
+        }
+        always { 
+            cleanWs()
         }
     }
     /*post { 
