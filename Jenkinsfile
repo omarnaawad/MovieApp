@@ -6,7 +6,7 @@ pipeline {
     agent {
         docker {
             label 'docker'
-            image 'cimg/android:2024.01' //cimg/android:2024.01 ccitest/android:2024.01.1
+            image 'ccitest/android:2024.01.1' //cimg/android:2024.01 ccitest/android:2024.01.1
         }
     }
     environment {
