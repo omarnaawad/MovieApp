@@ -6,7 +6,7 @@ pipeline {
     agent {
         docker {
             label 'docker'
-            image 'ccitest/android:2024.01.1' //cimg/android:2024.01 ccitest/android:2024.01.1
+            image 'gradle:8-jdk17' //cimg/android:2024.01 ccitest/android:2024.01.1
         }
     }
     environment {
