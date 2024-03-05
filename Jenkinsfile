@@ -3,7 +3,9 @@ pipeline {
         // This is required if you want to clean before build
         skipDefaultCheckout(true)
     }
-    agent {
+    agent 
+    //{ label 'android'}
+    {
         docker {
             label 'docker'
             image 'cimg/android:2024.01.1' //cimg/android:2024.01 ccitest/android:2024.01.1 mobiledevops/android-sdk-image:34.0.0-jdk17 gradle:8-jdk17
@@ -12,6 +14,7 @@ pipeline {
     environment {
         NEXUS_URL = '10.16.33.232:8081'
         NEXUS_CREDENTIAL_ID = '3' 
+        ANDROID_HOME = '/home/omar/android-sdk'
     }
     stages {
         /*stage('Clean') {
