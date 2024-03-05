@@ -6,7 +6,7 @@ pipeline {
     agent {
         docker {
             label 'docker'
-            image 'mobiledevops/android-sdk-image' //cimg/android:2024.01 ccitest/android:2024.01.1 mobiledevops/android-sdk-image:34.0.0-jdk17 gradle:8-jdk17
+            image 'androidsdk/android-31' //cimg/android:2024.01 ccitest/android:2024.01.1 mobiledevops/android-sdk-image:34.0.0-jdk17 gradle:8-jdk17
         }
     }
     environment {
