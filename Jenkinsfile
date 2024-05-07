@@ -73,7 +73,14 @@ pipeline {
         }
         stage ('SLackSend') {
             steps {
-                slackUploadFile filePath: "*./app/build/outputs/apk/release/app-release-unsigned.apk", channels: '#jen', initialComment:  "HEY That is APK"
+                //slackUploadFile filePath: "*./app/build/outputs/apk/release/app-release-unsigned.apk", channels: '#jen', initialComment:  "HEY That is APK"
+                script {
+                    def slackFile = slackUploadFile(
+                        tokenCredentialId: 'SlackApp',
+                        channels: '#jen',
+                        file: '*./app/build/outputs/apk/release/app-release-unsigned.apk'
+                    )
+                }
             }
         }
     }
