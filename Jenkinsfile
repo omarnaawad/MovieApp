@@ -78,7 +78,7 @@ pipeline {
                     def slackFile = slackUploadFile(
                         tokenCredentialId: 'SlackApp',
                         channels: '#jen',
-                        file: '*./app/build/outputs/apk/release/app-release-unsigned.apk'
+                        file: './app/build/outputs/apk/release/app-release-unsigned.apk'
                     )
                 }
             }
