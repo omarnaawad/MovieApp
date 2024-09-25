@@ -37,6 +37,7 @@ pipeline {
             steps {
                 sh 'java -version'
                 //sh './gradlew assemble'
+                sh './gradlew clean'
                 sh './gradlew assembleRelease'
             }
         }
