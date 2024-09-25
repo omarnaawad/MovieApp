@@ -86,6 +86,24 @@ pipeline {
                 }
             }
         }
+        stage('Upload to Slack') {
+            steps {
+                script {
+                    def slackChannel = '#jen'
+                     // Securely store this token using Jenkins credentials
+                    def filePath = 'app/build/outputs/apk/release/app-release-unsigned.apk'
+                    withCredentials([string(credentialsId: 'SlackApp', variable: 'SLACK_TOKEN')]) {
+                        sh """
+                        curl -F file=@${filePath} \
+                             -F channels=${slackChannel} \
+                             -F token=\$SLACK_TOKEN \
+                             https://slack.com/api/files.upload
+                        """
+                    }
+                    // Use curl to upload the file to Slack
+                }
+            }
+        }
     }
     /*post {
         success{
