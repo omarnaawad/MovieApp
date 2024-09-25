@@ -19,3 +19,7 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+
+-keep class com.your.package.** { *; } // Keep all classes in this package
+-keep class kotlin.Metadata { *; } // Keep Kotlin metadata
