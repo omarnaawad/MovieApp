@@ -75,6 +75,7 @@ pipeline {
             steps {
                 //slackUploadFile filePath: "*./app/build/outputs/apk/release/app-release-unsigned.apk", channels: '#jen', initialComment:  "HEY That is APK"
                 script {
+                    echo "Current workspace: ${pwd()}"
                     slackUploadFile(
                         tokenCredentialId: 'SlackApp',
                         channels: '#jen',
