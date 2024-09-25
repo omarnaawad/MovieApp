@@ -17,11 +17,11 @@ pipeline {
         ANDROID_HOME = '/home/omar/android-sdk'
     }
     stages {
-        /*stage('Clean') {
+        stage('Clean') {
             steps {
                 deleteDir()
             }
-        }*/
+        }
         stage('SCM') {
             steps {
                 checkout scm
