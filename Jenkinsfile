@@ -37,7 +37,7 @@ pipeline {
             steps {
                 sh 'java -version'
                 //sh './gradlew assemble'
-                sh './gradlew build'
+                sh './gradlew assembleRelease'
             }
         }
         stage('Test') {
