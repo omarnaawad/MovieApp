@@ -20,7 +20,7 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
-        multiDexEnabled = true
+        multiDexEnabled = false
 
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -33,7 +33,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
