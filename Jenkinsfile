@@ -17,7 +17,7 @@ pipeline {
         ANDROID_HOME = '/home/omar/android-sdk'
     }
     stages {
-        stage('Clean') {
+        stage('Clean WS') {
             steps {
                 deleteDir()
             }
@@ -27,7 +27,7 @@ pipeline {
                 checkout scm
             }
         }
-        stage('setup') {
+        stage('setup ENV') {
             steps {
                 sh 'chmod +x gradlew'
             }   
@@ -38,10 +38,10 @@ pipeline {
                 sh 'java -version'
                 //sh './gradlew assemble'
                 sh './gradlew clean'
-                sh './gradlew assembleRelease'
+                sh './gradlew build'
             }
         }
-        stage('Test') {
+        stage('Unit Test') {
             steps {
                 sh './gradlew test'
             }
@@ -66,13 +66,13 @@ pipeline {
                         repository: 'myrepo',
                         credentialsId: "${NEXUS_CREDENTIAL_ID}",
                         artifacts: [
-                            [artifactId: 'movies', classifier: '', file: './app/build/outputs/apk/release/app-release-unsigned.apk', type: 'apk']
+                            [artifactId: 'movies', classifier: '', file: './app/build/outputs/apk/debug/app-debug.apk', type: 'apk']
                         ]
                     )
                 }
             }
         }
-        stage ('SLackSend') {
+        /*stage ('SLackSend') {
             steps {
                 //slackUploadFile filePath: "*./app/build/outputs/apk/release/app-release-unsigned.apk", channels: '#jen', initialComment:  "HEY That is APK"
                 script {
@@ -84,7 +84,7 @@ pipeline {
                         initialComment:  "HEY That is APK"
                     )
                 }
-            }
+            }*/
         }
         stage('Upload to Slack') {
             steps {
@@ -105,12 +105,12 @@ pipeline {
             }
         }
     }
-    /*post {
+    post {
         success{
             slackSend color: "good", message: "Success"
         }
         always { 
             cleanWs()
         }
-    }*/
+    }
 }
