@@ -85,7 +85,7 @@ pipeline {
                     )
                 }
             }*/
-        }
+        
         stage('Upload to Slack') {
             steps {
                 script {
