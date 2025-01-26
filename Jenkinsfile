@@ -109,6 +109,9 @@ pipeline {
         success{
             slackSend color: "good", message: "Success"
         }
+        failure {
+            slackSend color: "bad", message: "Failed"
+        }
         always { 
             cleanWs()
         }
